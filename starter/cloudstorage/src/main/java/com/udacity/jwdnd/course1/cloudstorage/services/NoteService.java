@@ -3,14 +3,19 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 import com.udacity.jwdnd.course1.cloudstorage.entity.Note;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class NoteService {
+
+    @Autowired
     private final NoteMapper noteMapper;
 
-    public Note[] getAllNotes() {
+    public List<Note> getAllNotes() {
         return noteMapper.getAllNotes();
     }
 
@@ -18,15 +23,15 @@ public class NoteService {
         return noteMapper.getNoteById(noteid);
     }
 
-    public int insert(Note note) {
+    public Note insert(Note note) {
         return noteMapper.insert(note);
     }
 
-    public int delete(Integer noteid) {
-        return noteMapper.delete(noteid);
+    public void delete(Integer noteid) {
+        noteMapper.delete(noteid);
     }
 
-    public int update(Note note) {
+    public Note update(Note note) {
         return noteMapper.update(note);
     }
 }
