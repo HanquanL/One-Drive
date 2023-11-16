@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axiosInstance';
 
 function Signup(){
     const [username, setUsername] = useState("");
@@ -16,12 +17,20 @@ function Signup(){
         // Example: You might use Axios to send a signup request to your backend
         // If signup is successful, navigate to the login page
         // If signup is unsuccessful, display an error message
-        setSuccessMessage("You successfully signed up! Please continue to the login page.");
-        navigate(
-             '/login',
-            {state: { username: username, password: password, firstname: firstname, lastname: lastname }
-        },);
-    };
+        axiosInstance.post('/signup/', {
+            "username": username,
+            "password": password,
+            "first_name": firstname,
+            "last_name": lastname
+        }).then((response) => {
+            setSuccessMessage("Signup successful. Redirecting to login page...");
+            setErrorMessage("");
+            navigate('/login', {state: { username: username, password: password, firstname: firstname, lastname: lastname }});
+        }).catch((error) => {
+            setErrorMessage("Signup failed. Please try again.");
+            setSuccessMessage("");
+        });
+        };
 
     return(
        <div className="container justify-content-center w-50 p-3" style={{ backgroundColor: '#eeeeee', marginTop: '5em' }}>

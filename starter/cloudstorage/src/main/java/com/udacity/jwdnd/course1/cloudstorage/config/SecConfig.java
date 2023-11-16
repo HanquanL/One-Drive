@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity // This annotation tells Spring Boot to enable web security.
 public class SecConfig extends WebSecurityConfigurerAdapter {
 
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     public SecConfig(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;

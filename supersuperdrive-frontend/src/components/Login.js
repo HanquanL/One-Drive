@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axiosInstance';
 
 function Login(){
     const [username, setUsername] = useState("");
@@ -8,11 +9,14 @@ function Login(){
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Implement login logic here
-        // Example: You might use Axios to send a login request to your backend
-        // If login is successful, navigate to the home page
-        // If login is unsuccessful, display an error message
-        navigate("/",{state: { username: username, password: password }},);
+        axiosInstance.post('/login/', {
+            "username": username,
+            "password": password
+        }).then((response) => {
+            navigate('/', {state: { username: username, password: password }},);
+        }).catch((error) => {
+            console.log(error);
+        });
     };
 
     return (
