@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.entity.File;
+import com.udacity.jwdnd.course1.cloudstorage.entity.Note;
 import com.udacity.jwdnd.course1.cloudstorage.repository.FileRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class FileService {
 
     public File update(File file) {
         return fileRepository.save(file);
+    }
+
+    public List<File> searchFiles(String keyword) {
+        return fileRepository.search(keyword);
     }
 
 

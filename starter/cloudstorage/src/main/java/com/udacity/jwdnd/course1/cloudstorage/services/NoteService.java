@@ -34,4 +34,8 @@ public class NoteService {
     public Note update(Note note) {
         return noteRepository.save(note);
     }
+
+    public List<Note> searchNotes(String keyword) {
+        return noteRepository.search(keyword);
+    }
 }
