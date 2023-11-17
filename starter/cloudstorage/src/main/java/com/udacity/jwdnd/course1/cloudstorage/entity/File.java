@@ -19,7 +19,7 @@ public class File {
     private Integer fileid;
     private String filename;
     private String contenttype;
-    private String filesize;
+    private Long filesize;
     private Integer userid;
     private byte[] filedata;
 }
