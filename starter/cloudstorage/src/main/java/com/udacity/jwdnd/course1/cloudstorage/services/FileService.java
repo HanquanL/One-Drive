@@ -1,46 +1,47 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.entity.File;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
+import com.udacity.jwdnd.course1.cloudstorage.repository.FileRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class FileService {
 
     @Autowired
-    private final FileMapper fileMapper;
+    private final FileRepository fileRepository;
 
     public boolean isFilenameAvailable(String filename) {
-        return fileMapper.getFile(filename) == null;
+        return fileRepository.findByFilename(filename) == null;
     }
 
     public File addFile(File file) {
-        return fileMapper.insert(file);
+        return fileRepository.save(file);
     }
 
     public File getFile(String filename) {
-        return fileMapper.getFile(filename);
+        return fileRepository.findByFilename(filename);
     }
 
-    public File getFileById(Integer fileid) {
-        return fileMapper.getFileById(fileid);
+    public Optional<File> getFileById(Integer fileid) {
+        return fileRepository.findById(fileid);
     }
 
     public List<File> getAllFiles() {
-        return fileMapper.getAllFiles();
+        return fileRepository.findAll();
     }
 
     public void delete(Integer fileid) {
-        fileMapper.delete(fileid);
+        fileRepository.deleteById(fileid);
     }
 
     public File update(File file) {
-        return fileMapper.update(file);
+        return fileRepository.save(file);
     }
 
 

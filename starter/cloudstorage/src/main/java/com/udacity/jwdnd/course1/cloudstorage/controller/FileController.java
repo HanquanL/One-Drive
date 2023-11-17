@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/file")
@@ -25,7 +26,7 @@ public class FileController {
     }
 
     @GetMapping("/{fileid}")
-    public ResponseEntity<File> getFileById(@PathVariable Integer fileid) {
+    public ResponseEntity<Optional<File>> getFileById(@PathVariable Integer fileid) {
         return ResponseEntity.ok(fileService.getFileById(fileid));
     }
 
@@ -47,7 +48,7 @@ public class FileController {
 
     @DeleteMapping("/{fileid}")
     public ResponseEntity<Void> deleteFile(@PathVariable Integer fileid) {
-        if(fileService.getFileById(fileid) == null) {
+        if(fileService.getFileById(fileid).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         fileService.delete(fileid);
