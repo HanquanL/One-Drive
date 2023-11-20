@@ -23,15 +23,14 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.authorizeRequests()
-               .antMatchers("/signup", "/css/**", "/js/**").permitAll()
-                .anyRequest().authenticated();
+       http
+               .csrf().disable()
+               .cors().and()
+                .authorizeRequests()
+               .antMatchers("/signup", "/css/**", "/js/**", "/h2-console/**", "/login").permitAll()
+                .anyRequest().authenticated()
+               .and().headers().frameOptions().sameOrigin();
 
-       http.formLogin()
-               .loginPage("/login")
-               .permitAll();
 
-       http.formLogin()
-                .defaultSuccessUrl("/home", true);
     }
 }

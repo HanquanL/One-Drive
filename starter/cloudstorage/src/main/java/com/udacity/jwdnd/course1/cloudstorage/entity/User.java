@@ -2,14 +2,13 @@ package com.udacity.jwdnd.course1.cloudstorage.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -19,6 +18,7 @@ public class User {
     private Integer userid;
     private String username;
     private String salt;
+    @Column(length = 512)
     private String password;
     private String firstname;
     private String lastname;
