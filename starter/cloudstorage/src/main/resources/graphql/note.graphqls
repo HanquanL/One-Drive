@@ -6,8 +6,8 @@ type Note{
 }
 
 type Query{
-    notes: [Note!]!
-    noteById(id: ID!): Note!
+    findAllNotes: [Note!]!
+    findNoteById(id: ID!): Note!
 }
 
 type Mutation{
