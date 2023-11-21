@@ -3,11 +3,13 @@ package com.udacity.jwdnd.course1.cloudstorage.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
@@ -22,4 +24,6 @@ public class File {
     private Long filesize;
     private Integer userid;
     private byte[] filedata;
+    @CreationTimestamp
+    private LocalDateTime createdTime;
 }

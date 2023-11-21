@@ -28,8 +28,10 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
                .cors().and()
                 .authorizeRequests()
                .antMatchers("/signup", "/css/**", "/js/**", "/h2-console/**", "/login").permitAll()
+               .antMatchers("/note/**", "/file/**").authenticated()
                 .anyRequest().authenticated()
-               .and().headers().frameOptions().sameOrigin();
+               .and().headers().frameOptions().sameOrigin()
+               .and().httpBasic();
 
 
     }
