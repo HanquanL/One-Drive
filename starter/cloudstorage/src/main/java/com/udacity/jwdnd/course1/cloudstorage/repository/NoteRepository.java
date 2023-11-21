@@ -11,7 +11,7 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Integer> {
     Note findByNoteid(Integer noteid);
 
-    @Query("SELECT n FROM Note n WHERE n.notetitle LIKE %:keyword% OR n.notedescription LIKE %:keyword%")
+    @Query("SELECT n FROM Note n WHERE n.notetitle LIKE %:keyword% OR n.content LIKE %:keyword%")
     List<Note> search(@Param("keyword") String keyword);
 
 }

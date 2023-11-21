@@ -20,7 +20,7 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer noteid;
     private String notetitle;
-    private String notedescription;
+    private String content;
     private Integer userid;
     @CreationTimestamp
     private LocalDateTime createdTime;
