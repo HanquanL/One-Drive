@@ -2,8 +2,11 @@ package com.udacity.jwdnd.course1.cloudstorage.graphql.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.udacity.jwdnd.course1.cloudstorage.entity.Note;
+import com.udacity.jwdnd.course1.cloudstorage.exception.NoteNotFoundException;
 import com.udacity.jwdnd.course1.cloudstorage.repository.NoteRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class Query implements GraphQLQueryResolver {
@@ -19,6 +22,12 @@ public class Query implements GraphQLQueryResolver {
     }
 
     public Note findNoteById(Integer noteid) {
-        return noteRepository.findByNoteid(noteid);
+        Optional<Note> note = noteRepository.findById(noteid);
+        if(note.isPresent()) {
+            return note.get();
+        }else{
+            throw new NoteNotFoundException("Note Not Found", noteid);
+        }
+
     }
 }
