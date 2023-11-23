@@ -25,7 +25,7 @@ public class NoteController {
     }
 
     @GetMapping("/{noteid}")
-    public ResponseEntity<Note> getNoteById(@PathVariable Integer noteid) {
+    public ResponseEntity<Note> getNoteById(@PathVariable Long noteid) {
         return ResponseEntity.ok(noteService.getNoteById(noteid));
     }
 
@@ -36,7 +36,7 @@ public class NoteController {
     }
 
     @PutMapping("/{noteid}")
-    public ResponseEntity<Note> updateNoteById(@PathVariable Integer noteid, @RequestBody Note note) {
+    public ResponseEntity<Note> updateNoteById(@PathVariable Long noteid, @RequestBody Note note) {
         if(noteid != note.getNoteid()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -46,7 +46,7 @@ public class NoteController {
     }
 
     @DeleteMapping("/{noteid}")
-    public ResponseEntity<Note> deleteNoteById(@PathVariable Integer noteid) {
+    public ResponseEntity<Note> deleteNoteById(@PathVariable Long noteid) {
         if(noteService.getNoteById(noteid) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Nationalized;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -17,13 +16,19 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@Table(name="note")
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer noteid;
+    private Long noteid;
+    @Nationalized
     private String notetitle;
+    @Nationalized
     private String content;
-    private Integer userid;
+    private Long userid;
     @CreationTimestamp
     private LocalDateTime createdTime;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid", insertable = false, updatable = false)
+    private User user;
 }

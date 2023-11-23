@@ -36,7 +36,14 @@ public class UserService {
         }
 
         String hashedPassword = hashService.getHashedValue(user.getPassword(), encodeSalt);
-        return userRepository.save(new User(null, user.getUsername(), encodeSalt, hashedPassword, user.getFirstname(), user.getLastname()));
+        return userRepository.save(User.builder()
+                .userid(null)
+                .username(user.getUsername())
+                .salt(encodeSalt)
+                .password(hashedPassword)
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .build());
     }
 
     public User getUser(String username) {

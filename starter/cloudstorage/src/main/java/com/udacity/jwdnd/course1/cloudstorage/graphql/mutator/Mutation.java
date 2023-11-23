@@ -17,7 +17,7 @@ public class Mutation implements GraphQLMutationResolver {
         this.noteRepository = noteRepository;
     }
 
-    public boolean deleteNote(Integer noteid) {
+    public boolean deleteNote(Long noteid) {
         boolean deleted = false;
         Note note = noteRepository.findByNoteid(noteid);
         if(note != null) {
@@ -38,7 +38,7 @@ public class Mutation implements GraphQLMutationResolver {
         return noteRepository.save(note);
     }
 
-    public Note updateNote(Integer noteid,String notetitle, String content) {
+    public Note updateNote(Long noteid,String notetitle, String content) {
         Optional<Note> optionalNote = noteRepository.findById(noteid);
 
         if(optionalNote.isPresent()){

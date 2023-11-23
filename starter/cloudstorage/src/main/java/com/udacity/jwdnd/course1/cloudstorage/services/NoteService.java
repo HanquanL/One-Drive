@@ -19,7 +19,7 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
-    public Note getNoteById(Integer noteid) {
+    public Note getNoteById(Long noteid) {
         return noteRepository.findByNoteid(noteid);
     }
 
@@ -27,7 +27,7 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    public void delete(Integer noteid) {
+    public void delete(Long noteid) {
         noteRepository.deleteById(noteid);
     }
 

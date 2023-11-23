@@ -12,7 +12,7 @@ public class NoteNotFoundException extends RuntimeException implements GraphQLEr
 
         private Map<String, Object> extensions = new HashMap<>();
 
-        public NoteNotFoundException(String message, Integer invalidNoteId) {
+        public NoteNotFoundException(String message, Long invalidNoteId) {
             super(message);
             extensions.put("invalidNoteId", invalidNoteId);
         }
