@@ -39,7 +39,7 @@ public class UserController {
         }
 
         if(signupError == null){
-            int rowsAdded = userService.createUser(user).getUserid();
+            Long rowsAdded = userService.createUser(user).getUserid();
             if(rowsAdded < 0){
                 signupError = "There was an error signing you up. Please try again.";
             }

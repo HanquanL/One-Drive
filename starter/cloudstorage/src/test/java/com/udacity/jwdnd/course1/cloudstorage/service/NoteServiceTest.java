@@ -24,7 +24,7 @@ public class NoteServiceTest {
 
     private String notetitle = "Test Title";
     private String notedescription = "Test Description";
-    private Integer userid = 1;
+    private Long userid = 1;
 
     @BeforeEach
     public void setup() {

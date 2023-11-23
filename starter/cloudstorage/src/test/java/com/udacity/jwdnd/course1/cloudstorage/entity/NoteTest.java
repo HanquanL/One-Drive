@@ -9,7 +9,7 @@ public class NoteTest {
     private Note note;
     private String notetitle = "Test Title";
     private String notedescription = "Test Description";
-    private Integer userid = 1;
+    private Long userid = 1;
 
     @BeforeEach
     public void setup() {
@@ -18,7 +18,7 @@ public class NoteTest {
 
     @Test
     public void testSetAndGetNoteId() {
-        Integer noteId = 1;
+        Long noteid = 1;
         note.setNoteid(noteId);
         assertEquals(noteId, note.getNoteid());
     }

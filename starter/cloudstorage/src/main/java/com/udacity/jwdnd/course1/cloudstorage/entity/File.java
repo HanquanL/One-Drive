@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -22,8 +19,11 @@ public class File {
     private String filename;
     private String contenttype;
     private Long filesize;
-    private Integer userid;
+    private Long userid;
     private byte[] filedata;
     @CreationTimestamp
     private LocalDateTime createdTime;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid", insertable = false, updatable = false)
+    private User user;
 }

@@ -21,7 +21,7 @@ public class Query implements GraphQLQueryResolver {
         return noteRepository.findAll();
     }
 
-    public Note findNoteById(Integer noteid) {
+    public Note findNoteById(Long noteid) {
         Optional<Note> note = noteRepository.findById(noteid);
         if(note.isPresent()) {
             return note.get();
